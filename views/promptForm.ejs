@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Test your writing skills first!</h1>
+
+<p>Please write creatively in the box below. Your result will be used to determine the optimal courses for you to take.</p>
+
+<% if (err) { %>
+    <p><%= err %></p>
+<% } %>
+<form action="/prompt/<%= user.id %>" method="post">
+    <textarea name="text" id="" cols="30" rows="10"></textarea><br><br>
+    <input type="submit" value="Suprise Me!">
+</form>
+
+
+
+</body>
+</html>

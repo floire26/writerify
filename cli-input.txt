@@ -1,0 +1,19 @@
+-- Migration
+
+--- User
+npx sequelize-cli model:generate --name User --attributes username:string,email:string,password:string,ProficiencyId:integer,ClassId:integer
+
+--- Courses
+npx sequelize-cli model:generate --name Course --attributes name:string,description:text,duration:integer,ClassId:integer
+
+-- Class
+npx sequelize-cli model:generate --name Class --attributes UserId:integer,CourseId:integer
+
+-- Transactions
+npx sequelize-cli model:generate --name Transaction --attributes UserId:integer,CourseId:integer
+
+-- Proficiencies
+npx sequelize-cli model:generate --name Proficiency --attributes level:string
+
+-- addColumn Transactions
+npx sequelize-cli migration:generate --name add-price-column-to-Transactions

@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const promptRouter = require('./prompt');
+const coursesRouter = require('./courses');
+
 const Controller = require('../controllers/controller')
 
 
@@ -11,5 +14,9 @@ router.post('/register', Controller.registerPost)
 router.get('/course-list', Controller.courseList)
 
 
-module.exports = router
+// router.get('/', 'main');
+router.use('/prompt',  promptRouter);
+router.use('/courses', coursesRouter);
 
+
+module.exports = router
