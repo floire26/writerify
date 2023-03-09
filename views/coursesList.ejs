@@ -11,6 +11,7 @@
         .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
           font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
         .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+        .stripe-button-el
         </style>
     <title>List of Recommended Courses</title>
 </head>
@@ -42,7 +43,31 @@
                 <td class="tg-0pky"><%= course.duration %></td>
                 <td class="tg-0pky"><%= course.Proficiency.level %></td>
                 <td class="tg-0pky"><%= course.price %></td>
-                <td class="tg-0pky"><a href="/courses/<%= user.id %>/enroll/<%= course.id %>">Enroll</a></td>
+                <td class="tg-0pky">
+                <% if (user.Courses.every(enrolledCourse => enrolledCourse.name !== course.name)) { %>
+                    <form action="/courses/<%= user.id %>/enroll/<%= course.id %>" method="post">
+                        <a href="/courses/<%= user.id %>/enroll/<%= course.id %>">
+                        <script
+                        src="//checkout.stripe.com/v2/checkout.js"
+                        class="stripe-button"
+                        data-key="<%= key %>"
+                        data-amount="<%= course.price * 100%>"
+                        data-label="Enroll"
+                        data-currency="usd"
+                        data-name="<%= user.username %>"
+                        data-description="Checkout for enrolling in <%= course.name %>"
+                        data-locale="auto" >
+                        </script>
+                        </a>
+                    </form>
+                <% } else { %>
+                    <a href="/courses/<%= user.id %>/unenroll/<%= course.id %>">
+                        <button>
+                            Unenroll
+                        </button>
+                    </a>
+                <% } %>
+                </td>
             </tr>
             <% }); %>
         </tbody>
@@ -57,5 +82,7 @@
             <button>Give me courses recommendation!</button>
         </a>
     <% } %>
+
+
 </body>
 </html>
