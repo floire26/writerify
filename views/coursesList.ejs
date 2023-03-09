@@ -51,8 +51,6 @@
       gap: 3rem;
     }
 
-    
-
     .card button {
       width: 100%;
       margin-top: 1em;
@@ -119,9 +117,31 @@
             <p><strong>Level</strong><br /><%= course.Proficiency.level %></p>
             <p><strong>Price</strong><br /><%= course.price %></p>
           </div>
-          <a href="/courses/<%= user.id %>/enroll/<%= course.id %>"
-            ><button>Enroll</button></a
+          <% if (user.Courses.every(enrolledCourse => enrolledCourse.name !==
+          course.name)) { %>
+          <form
+            action="/courses/<%= user.id %>/enroll/<%= course.id %>"
+            method="post"
           >
+            <a href="/courses/<%= user.id %>/enroll/<%= course.id %>">
+              <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="<%= course.price * 100%>"
+                data-label="Enroll"
+                data-currency="usd"
+                data-name="<%= user.username %>"
+                data-description="Checkout for enrolling in <%= course.name %>"
+                data-locale="auto"
+              ></script>
+            </a>
+          </form>
+          <% } else { %>
+          <a href="/courses/<%= user.id %>/unenroll/<%= course.id %>">
+            <button>Unenroll</button>
+          </a>
+          <% } %>
         </div>
       </div>
       <% }); %>
@@ -131,7 +151,10 @@
       <button>Let me see all of the courses!</button>
     </a>
     <% } else { %>
-    <a class="bottom-action" href="/courses/<%= user.id %>?prof=<%= user.ProficiencyId %>">
+    <a
+      class="bottom-action"
+      href="/courses/<%= user.id %>?prof=<%= user.ProficiencyId %>"
+    >
       <button>Give me courses recommendation!</button>
     </a>
     <% } %>
