@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRITERIFY</title>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            background-color: #F2D1D1;
+            color: #1C315E;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 2em;
+            background-color: #DAEAF1;
+            color: #A7727D;
+            height: 4em;
+        }
+        
+        .login-register-nav {
+            display: flex;
+            gap: 1em;
+        }
+
+        #title {
+            font-size: 3em;
+            transition-duration: 200ms;
+        }
+
+        #title:hover {
+            font-size: 3.5em;
+        }
+
+        a {
+            text-decoration: none;
+            transition-duration: 200ms;
+            font-size: x-large;
+        }
+
+        nav a:hover {
+            transform: scale(1.2);
+        }
+
+    </style>
+
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/" id="title" style="color: #A7727D;">Writerify</a>
+        </div>
+        <div class="login-register-nav">
+            <a href="/login" style="color: #1C315E;">Sign In</a>
+            <a href="/register" style="color: #1C315E;">Sign Up</a>
+        </div>
+    </nav>   
+</body>
+</html>
