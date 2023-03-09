@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Introduction to Creative Writing",
+    "description": "Learn the basics of creative writing and explore various genres including fiction, poetry, and creative nonfiction.",
+    "duration": 12,
+    "price": 9.99,
+    "proficiencyId": 1
+  },
+  {
+    "name": "Writing for Beginners",
+    "description": "Develop fundamental writing skills and gain confidence in expressing yourself through written language.",
+    "duration": 16,
+    "price": 7.99,
+    "proficiencyId": 1
+  },
+  {
+    "name": "Grammar and Punctuation",
+    "description": "Master the rules of grammar and punctuation to improve the clarity and effectiveness of your writing.",
+    "duration": 8,
+    "price": 5.99,
+    "proficiencyId": 1
+  },
+  {
+    "name": "Intermediate Fiction Writing",
+    "description": "Take your fiction writing to the next level with advanced techniques and in-depth analysis of published works.",
+    "duration": 20,
+    "price": 12.99,
+    "proficiencyId": 2
+  },
+  {
+    "name": "Advanced Poetry Workshop",
+    "description": "Explore the intricacies of poetry and experiment with new forms and techniques to take your poetry to the next level.",
+    "duration": 24,
+    "price": 14.99,
+    "proficiencyId": 2
+  },
+  {
+    "name": "Creative Nonfiction Writing",
+    "description": "Learn how to turn real-life experiences into compelling stories with this in-depth course on creative nonfiction writing.",
+    "duration": 18,
+    "price": 11.99,
+    "proficiencyId": 2
+  },
+  {
+    "name": "Advanced Fiction Writing",
+    "description": "Hone your fiction writing skills with advanced techniques and intensive practice in this challenging course.",
+    "duration": 24,
+    "price": 16.99,
+    "proficiencyId": 3
+  },
+  {
+    "name": "Poetry Masterclass",
+    "description": "Explore the art of poetry in-depth with this comprehensive course that covers everything from form to imagery.",
+    "duration": 28,
+    "price": 18.99,
+    "proficiencyId": 3
+  },
+  {
+    "name": "Screenwriting",
+    "description": "Learn how to write compelling and engaging scripts for film, television, and other visual media with this comprehensive course on screenwriting.",
+    "duration": 22,
+    "price": 13.99,
+    "proficiencyId": 3
+  }
+]
