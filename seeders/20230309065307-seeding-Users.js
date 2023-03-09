@@ -1,5 +1,6 @@
 'use strict';
 const fs = require('fs');
+const bcrypt = require('bcrypt');
 
 
 /** @type {import('sequelize-cli').Migration} */
@@ -19,6 +20,7 @@ module.exports = {
       'utf-8'
     ))
     .map(el => {
+      el.password = bcrypt.hashSync(el.password, 10);
       el.createdAt = new Date();
       el.updatedAt = new Date();
       return el;
