@@ -16,11 +16,24 @@ module.exports = (sequelize, DataTypes) => {
       Course.belongsToMany(models.User, { through: models.Class });
       Course.hasMany(models.Class)
     }
+
+    convertPrice() {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(this.price)
+    }
   }
   Course.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    duration: DataTypes.INTEGER,
+    duration:  {
+      type: DataTypes.INTEGER,
+      get() {
+          const rawValue = this.getDataValue('duration');
+          return rawValue ? rawValue + ' hours' : null;
+      }
+    },
     price: DataTypes.INTEGER,
     ProficiencyId: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
