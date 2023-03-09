@@ -30,7 +30,6 @@ class promptController {
     }
 
     static postTestForm(req, res) {
-        let updatedProf;
         const { text } = req.body;
         const { userId } = req.params;
 
