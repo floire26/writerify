@@ -61,8 +61,12 @@
             <a href="/" id="title" style="color: #A7727D;">Writerify</a>
         </div>
         <div class="login-register-nav">
-            <a href="/login" style="color: #1C315E;">Sign In</a>
-            <a href="/register" style="color: #1C315E;">Sign Up</a>
+            <% if (typeof user === 'undefined') { %>
+                <a href="/login" style="color: #1C315E;">Sign In</a>
+                <a href="/register" style="color: #1C315E;">Sign Up</a>
+            <% } else { %>
+                <a href="/logout" style="color: #1C315E;">Sign Out</a>
+            <% } %>
         </div>
     </nav>   
 </body>
