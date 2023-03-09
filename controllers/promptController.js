@@ -66,7 +66,7 @@ class promptController {
                 }
             })
 
-            res.redirect(`/courses?prof=${ProficiencyId}`);
+            res.redirect(`/courses/${userId}?prof=${ProficiencyId}`);
         })
         .catch(err => res.send(err));
     }

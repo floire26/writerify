@@ -15,9 +15,13 @@
     <title>List of Recommended Courses</title>
 </head>
 <body>
-    <h1>List of Recommended Courses</h1>
+    <h1>List of <%= prof? "Recommended" : "" %>  Courses</h1>
 
-    <h2>As a/an <%= courses[0].Proficiency.level %> student, here are some courses that you might be interested...</h2>
+    <% if (prof) { %>
+        <h2>As a/an <%= courses[0].Proficiency.level %> student, here are some courses that you might be interested...</h2>
+    <% } else { %>
+        <h2> Here are all of the courses that are being offered by Writerify...</h2>
+    <% } %>
 
     <table class="tg">
         <thead>
@@ -27,6 +31,7 @@
             <th class="tg-0pky">Duration</th>
             <th class="tg-0pky">Level</th>
             <th class="tg-0pky">Price</th>
+            <th class="tg-0pky">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -37,10 +42,20 @@
                 <td class="tg-0pky"><%= course.duration %></td>
                 <td class="tg-0pky"><%= course.Proficiency.level %></td>
                 <td class="tg-0pky"><%= course.price %></td>
+                <td class="tg-0pky"><a href="/courses/<%= user.id %>/enroll/<%= course.id %>">Enroll</a></td>
             </tr>
             <% }); %>
         </tbody>
     </table>
 
+    <% if (prof) { %>
+        <a href="/courses/<%= user.id %>">
+            <button>Let me see all of the courses!</button>
+        </a>
+    <% } else { %>
+        <a href='/courses/<%= user.id %>?prof=<%= user.ProficiencyId %>'>
+            <button>Give me courses recommendation!</button>
+        </a>
+    <% } %>
 </body>
 </html>
