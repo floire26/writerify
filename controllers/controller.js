@@ -4,7 +4,8 @@ class Controller {
     }
 
     static login(req, res) {
-        res.render('login')
+        const {error} = req.query
+        res.render('login', {error})
     }
 
     static loginPost(req, res) {
@@ -20,8 +21,18 @@ class Controller {
     
     static registerPost(req, res) {
         const {userName, email, password} = req.body
-        console.log({userName, email, password});
-        
+
+        User.create({userName, email, password})
+        .then(() => {
+            res.redirect('/login')
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static courseList(req, res) {
+        res.render('courseList')
     }
 
 
