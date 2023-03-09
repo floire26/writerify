@@ -1,12 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const bodyparser = require('body-parser');
+const publicRouter = require('./public')
 const promptRouter = require('./prompt');
 const coursesRouter = require('./courses');
 
-// router.get('/', 'main');
+const Controller = require('../controllers/controller')
+
+
+router.use('/', publicRouter)
+
 router.use('/prompt',  promptRouter);
 router.use('/courses', coursesRouter);
+
+router.get('/logout', Controller.logout)
 
 
 module.exports = router

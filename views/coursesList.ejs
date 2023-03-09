@@ -1,88 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-include("./_partials/header")-%>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style type="text/css">
-        .tg  {border-collapse:collapse;border-spacing:0;}
-        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-          overflow:hidden;padding:10px 5px;word-break:normal;}
-        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-          font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-        .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-        .stripe-button-el
-        </style>
-    <title>List of Recommended Courses</title>
+  <style>
+    .container {
+      width: 65rem;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .title {
+      font-size: 48px;
+    }
+    .subtitle {
+      font-size: 24px;
+      margin: 1rem 0;
+    }
+    .cards {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      gap: 2rem;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: #f9f5e7;
+      border-radius: 1rem;
+      padding: 1rem;
+      width: 30%;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .card-detail {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .card button {
+      width: 100%;
+      margin-top: 1em;
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    button {
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    button:hover {
+      background-color: #b56373;
+    }
+
+    .bottom-action {
+      margin-top: 2rem;
+      display: inherit;
+      text-align: center;
+    }
+
+    .bottom-action button {
+      font-size: 24px;
+      padding: 0.5em 1em;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>List of <%= prof? "Recommended" : "" %>  Courses</h1>
-
+  <div class="container">
+    <h1 class="title">List of <%= prof? "Recommended" : "" %> Courses</h1>
     <% if (prof) { %>
-        <h2>As a/an <%= courses[0].Proficiency.level %> student, here are some courses that you might be interested...</h2>
+    <p class="subtitle">
+      As a/an <%= courses[0].Proficiency.level %> student, here are some courses
+      that you might be interested...
+    </p>
     <% } else { %>
-        <h2> Here are all of the courses that are being offered by Writerify...</h2>
+    <p class="subtitle">
+      Here are all of the courses that are being offered by Writerify...
+    </p>
     <% } %>
 
-    <table class="tg">
-        <thead>
-          <tr>
-            <th class="tg-0pky">Course Name</th>
-            <th class="tg-0pky">Description</th>
-            <th class="tg-0pky">Duration</th>
-            <th class="tg-0pky">Level</th>
-            <th class="tg-0pky">Price</th>
-            <th class="tg-0pky">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% courses.forEach(course => { %>
-            <tr>
-                <td class="tg-0pky"><%= course.name %></td>
-                <td class="tg-0pky"><%= course.description %></td>
-                <td class="tg-0pky"><%= course.duration %></td>
-                <td class="tg-0pky"><%= course.Proficiency.level %></td>
-                <td class="tg-0pky"><%= course.price %></td>
-                <td class="tg-0pky">
-                <% if (user.Courses.every(enrolledCourse => enrolledCourse.name !== course.name)) { %>
-                    <form action="/courses/<%= user.id %>/enroll/<%= course.id %>" method="post">
-                        <a href="/courses/<%= user.id %>/enroll/<%= course.id %>">
-                        <script
-                        src="//checkout.stripe.com/v2/checkout.js"
-                        class="stripe-button"
-                        data-key="<%= key %>"
-                        data-amount="<%= course.price * 100%>"
-                        data-label="Enroll"
-                        data-currency="usd"
-                        data-name="<%= user.username %>"
-                        data-description="Checkout for enrolling in <%= course.name %>"
-                        data-locale="auto" >
-                        </script>
-                        </a>
-                    </form>
-                <% } else { %>
-                    <a href="/courses/<%= user.id %>/unenroll/<%= course.id %>">
-                        <button>
-                            Unenroll
-                        </button>
-                    </a>
-                <% } %>
-                </td>
-            </tr>
-            <% }); %>
-        </tbody>
-    </table>
-
+    <div class="cards">
+      <% courses.forEach(course => { %>
+      <div class="card">
+        <div class="card-content">
+          <h1 class="card-title"><%= course.name %></h1>
+          <p class="card-description"><%= course.description %></p>
+        </div>
+        <div>
+          <div class="card-detail">
+            <p><strong>Duration</strong><br /><%= course.duration %></p>
+            <p><strong>Level</strong><br /><%= course.Proficiency.level %></p>
+            <p><strong>Price</strong><br /><%= course.price %></p>
+          </div>
+          <% if (user.Courses.every(enrolledCourse => enrolledCourse.name !==
+          course.name)) { %>
+          <form
+            action="/courses/<%= user.id %>/enroll/<%= course.id %>"
+            method="post"
+          >
+            <a href="/courses/<%= user.id %>/enroll/<%= course.id %>">
+              <script
+                src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="<%= key %>"
+                data-amount="<%= course.price * 100%>"
+                data-label="Enroll"
+                data-currency="usd"
+                data-name="<%= user.username %>"
+                data-description="Checkout for enrolling in <%= course.name %>"
+                data-locale="auto"
+              ></script>
+            </a>
+          </form>
+          <% } else { %>
+          <a href="/courses/<%= user.id %>/unenroll/<%= course.id %>">
+            <button>Unenroll</button>
+          </a>
+          <% } %>
+        </div>
+      </div>
+      <% }); %>
+    </div>
     <% if (prof) { %>
-        <a href="/courses/<%= user.id %>">
-            <button>Let me see all of the courses!</button>
-        </a>
+    <a class="bottom-action" href="/courses/<%= user.id %>">
+      <button>Let me see all of the courses!</button>
+    </a>
     <% } else { %>
-        <a href='/courses/<%= user.id %>?prof=<%= user.ProficiencyId %>'>
-            <button>Give me courses recommendation!</button>
-        </a>
+    <a
+      class="bottom-action"
+      href="/courses/<%= user.id %>?prof=<%= user.ProficiencyId %>"
+    >
+      <button>Give me courses recommendation!</button>
+    </a>
     <% } %>
-
-
+  </div>
 </body>
-</html>

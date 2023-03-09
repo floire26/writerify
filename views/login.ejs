@@ -1,0 +1,77 @@
+<%-include("./_partials/header")-%>
+
+<head>
+  <style>
+    main {
+      width: 100vw;
+      height: calc(100vh - 8em);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #f9f5e7;
+      gap: 2em;
+      font-size: 2em;
+      padding: 1em;
+      border-radius: 1em;
+    }
+
+    input {
+      font-size: 24px;
+      border-radius: 0.25em;
+      border: 2px solid #f8ead8;
+      padding: 0.5em;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #submit {
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    #submit:hover {
+      background-color: #b56373;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <form action="/login" method="POST">
+      <% if (typeof error !== 'undefined') { %>
+      <p style="color: red"><%= error %></p>
+      <% } %>
+      <!-- email -->
+      <label>
+        <p>Email:</p>
+        <input type="text" placeholder="Input Your Email" name="email" />
+      </label>
+      <!-- password -->
+      <label>
+        <p>Password:</p>
+        <input
+          type="password"
+          placeholder="Input Your Password"
+          name="password"
+        />
+      </label>
+      <!-- sign in -->
+      <input id="submit" type="submit" value="Sign In" />
+    </form>
+  </main>
+</body>

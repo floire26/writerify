@@ -19,26 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsToMany(models.Course, { through: models.Class });
       User.hasMany(models.Class)
     }
-
-    static login(email, pass) {
-      if (!email || !pass) {
-        throw new Error("Email / password doesn't exist.");
-      }
-
-      User.findOne({
-        where:
-        {
-          email
-        }
-      })
-      .then(foundUser => {
-        if (!bcrypt.compareSync(pass, foundUser.password)) {
-          throw new Error("Wrong e-mail/password.");
-        } else {
-          //masuk req.session -> redirect
-        }
-      })
-    }
   }
 
   User.init({
@@ -53,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
   User.beforeCreate(user => {
-    user.password =bcrypt.hashSync(el.password, 10);
+    user.password = bcrypt.hashSync(user.password, 10);
   })
   return User;
 };

@@ -1,25 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-include("./_partials/header")-%>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <style>
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 8em);
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      background-color: #f9f5e7;
+      padding: 2em;
+      border-radius: 1em;
+    }
+    .title {
+      font-size: 36px;
+    }
+    .subtitle {
+      font-size: 24px;
+    }
+
+    textarea {
+      font-size: 24px;
+      border-radius: 0.25em;
+      border: 2px solid #f8ead8;
+      padding: 0.5em;
+      width: 100%;
+    }
+
+    input {
+      font-size: 24px;
+      border-radius: 0.25em;
+      border: 2px solid #f8ead8;
+      padding: 0.5em;
+    }
+
+    #submit {
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    #submit:hover {
+      background-color: #b56373;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Test your writing skills first!</h1>
+  <main>
+    <div class="container">
+      <h1 class="title">Test your writing skills first!</h1>
 
-<p>Please write creatively in the box below. Your result will be used to determine the optimal courses for you to take.</p>
+      <p class="subtitle">
+        Please write creatively in the box below. Your result will be used to
+        determine the optimal courses for you to take.
+      </p>
 
-<% if (err) { %>
-    <p><%= err %></p>
-<% } %>
-<form action="/prompt/<%= user.id %>" method="post">
-    <textarea name="text" id="" cols="30" rows="10"></textarea><br><br>
-    <input type="submit" value="Suprise Me!">
-</form>
-
-
-
+      <% if (err) { %>
+      <p><%= err %></p>
+      <% } %>
+      <form action="/prompt/<%= user.id %>" method="post">
+        <textarea name="text" id="" cols="30" rows="10"></textarea><br /><br />
+        <input id="submit" type="submit" value="Surprise Me!" />
+      </form>
+    </div>
+  </main>
 </body>
-</html>
