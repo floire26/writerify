@@ -1,25 +1,126 @@
 <%-include("./_partials/header")-%>
 
 <head>
-    <style>
-        .card {
-            background-color: #F9F5E7;
-            border-radius: 1em;
-            padding: 1em;
-        }
+  <style>
+    .container {
+      width: 65rem;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .title {
+        font-size: 48px;
+    }
+    .subtitle {
+        font-size: 18px;
+        margin: 1rem 0;
+    }
+    .cards {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
 
-        .card-detail {
-            display: flex;
-            gap: 1em;
-        }
-    </style>
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      background-color: #f9f5e7;
+      border-radius: 1rem;
+      padding: 1rem;
+      width: 30%;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .card-detail {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .card button {
+      width: 100%;
+      margin-top: 1em;
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="card">
-        <h1 class="card-title">Advanced Fiction Writing</h1>
-        <p class="card-description">Hone your fiction writing skills with advanced techniques and intensive practice in this challenging course</p>
-        <div class="card-detail"><span>24</span><span>19</span></div>
-        <button>Enroll</button>
+  <div class="container">
+    <h1 class="title">List of Recommended Courses</h1>
+    <p class="subtitle">As a/an beginner student, here are some courses that you might be interested...</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-content">
+          <h1 class="card-title">Advanced Fiction Writing</h1>
+          <p class="card-description">
+            Hone your fiction writing skills with advanced techniques and
+            intensive practice in this challenging course.
+          </p>
+        </div>
+        <div>
+          <div class="card-detail">
+            <p><strong>Duration</strong><br />24</p>
+            <p><strong>Level</strong><br />Advanced</p>
+            <p><strong>Price</strong><br />17</p>
+          </div>
+          <button>Enroll</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h1 class="card-title">Poetry Masterclass</h1>
+          <p class="card-description">
+            Explore the art of poetry in-depth with this comprehensive course
+            that covers everything from form to imagery.
+          </p>
+        </div>
+        <div>
+          <div class="card-detail">
+            <p><strong>Duration</strong><br />28</p>
+            <p><strong>Level</strong><br />Advanced</p>
+            <p><strong>Price</strong><br />19</p>
+          </div>
+          <button>Enroll</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h1 class="card-title">Screenwriting</h1>
+          <p class="card-description">
+            Learn how to write compelling and engaging scripts for film,
+            television, and other visual media with this comprehensive course on
+            screenwriting
+          </p>
+        </div>
+        <div>
+          <div class="card-detail">
+            <p><strong>Duration</strong><br />22</p>
+            <p><strong>Level</strong><br />Advanced</p>
+            <p><strong>Price</strong><br />14</p>
+          </div>
+          <button>Enroll</button>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
