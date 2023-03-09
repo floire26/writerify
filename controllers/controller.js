@@ -3,7 +3,8 @@ const { User } = require("../models/");
 
 class Controller {
   static home(req, res) {
-    res.render("home");
+    const {user} = req.session
+    res.render("home", {user});
   }
 
   static login(req, res) {
@@ -14,7 +15,7 @@ class Controller {
   static loginPost(req, res) {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.send("Wrong email/password");
+      res.redirect('/login?error=Please fill all fields')
     }
 
     User.findOne({
@@ -22,8 +23,8 @@ class Controller {
         email,
       },
     }).then((foundUser) => {
-      if (!bcrypt.compareSync(password, foundUser.password)) {
-        res.send("Wrong email/password");
+      if (!foundUser || !bcrypt.compareSync(password, foundUser.password)) {
+        res.redirect('/login?error=Incorrect email/password')
       } else {
         req.session.user = {
           id: foundUser.id,

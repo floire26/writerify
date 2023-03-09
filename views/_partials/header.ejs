@@ -65,6 +65,7 @@
                 <a href="/login" style="color: #1C315E;">Sign In</a>
                 <a href="/register" style="color: #1C315E;">Sign Up</a>
             <% } else { %>
+                <a href="/courses/<%= user.id %>">Courses</a>
                 <a href="/logout" style="color: #1C315E;">Sign Out</a>
             <% } %>
         </div>
