@@ -43,31 +43,30 @@
       margin: 2rem;
     }
 
-  .button-23 {
-    background-color: #FFFFFF;
-    border: 1px solid #222222;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #222222;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-    padding: 10px;
-    outline: none;
-    padding: 13px 23px;
-    margin: 1%;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
-  }
+    button {
+      background-color: #a7727d;
+      color: white;
+      border: none;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    button:hover {
+      background-color: #b56373;
+    }
+
+    .bottom-action {
+      margin-top: 2rem;
+      display: inherit;
+      text-align: center;
+    }
+
+    .bottom-action button {
+      font-size: 24px;
+      padding: 0.5em 1em;
+    }
 
   #navButton {
     font-size: 16px;
@@ -105,8 +104,8 @@
         Welcome to <strong>Writerify</strong>! <strong>Writerify</strong>  that can help you improve your writing
         skills
       </h1>
-      <a href="/register">
-        <button class="button-23">Register for Free</button>
+      <a class="bottom-action" href="/register">
+        <button >Register for Free</button>
       </a>
     </div>
   </main>

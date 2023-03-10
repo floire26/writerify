@@ -1,6 +1,11 @@
 <%-include("./_partials/header")-%>
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <title>List of Courses</title>
   <style>
     .container {
       width: 65rem;
@@ -9,10 +14,24 @@
     }
     .title {
       font-size: 48px;
+      font-family: Nunito;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 800;
+      line-height: 26.4px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
     .subtitle {
       font-size: 24px;
       margin: 1rem 0;
+      font-size: 24px;
+      font-family: Nunito;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 26.4px;
+      margin-bottom: 1rem;
     }
     .cards {
       display: flex;
@@ -32,23 +51,42 @@
       background-color: #f9f5e7;
       border-radius: 1rem;
       padding: 1rem;
-      width: 30%;
+      width: 31%;
     }
 
     .card-content {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      font-size: 18px;
+      font-family: Nunito;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 26.4px;
+      margin-bottom: 1rem;
     }
 
     .card-title {
       text-align: center;
       font-size: 24px;
+      font-family: Nunito;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 800;
+      line-height: 26.4px;
+      margin-bottom: 1rem;
     }
 
     .card-detail {
       display: flex;
-      gap: 3rem;
+      gap: 2rem;
+      font-family: Nunito;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 26.4px;
+      margin-bottom: 1rem;
     }
 
     .card button {
@@ -84,14 +122,33 @@
     }
 
     .bottom-action button {
-      font-size: 24px;
+      font-size: 20px;
       padding: 0.5em 1em;
     }
+
+    button #unenroll {
+      font-size: 20px;
+      padding: 0.5em 1em;
+      background-color: #7a5461;
+    }
+
+    button #unenroll:hover {
+      background-color: #0f0c0d;
+    }
+
+    .card form{
+      line-height: 26.4px;
+      margin-bottom: 1rem;
+    }
+
+    .stripe-button-el { display: none }
+
+    form input#search {
+      line-height: 30px;
+      padding: 6px;
+      width: 89%;
+    }
   </style>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>List of Courses</title>
 </head>
 
 <body>
@@ -106,15 +163,15 @@
     <% } else { %>
     <p class="subtitle">
       Here are all of the courses that are being offered by Writerify...
-      <form action="" method="get">
-        <input type="text" name="search"/>
-        <input type="submit" value="Search" />
+      <form action="" method="get" class="bottom-action">
+        <input type="text" name="search" id="search"/>
+        <button type="submit">Submit</button>
       </form>
     </p>
     <% } %>
 
     <% if (courses.length === 0) { %>
-        <p>No courses are found!</p>
+        <p class="subtitle">No courses are found!</p>
     <% } else { %>
         <div class="cards">
         <% courses.forEach(course => { %>
@@ -135,7 +192,7 @@
                 action="/courses/<%= user.id %>/enroll/<%= course.id %>"
                 method="post"
             >
-                <a href="/courses/<%= user.id %>/enroll/<%= course.id %>">
+                <a href="/courses/<%= user.id %>/enroll/<%= course.id %>" class="bottom-action" >
                 <script
                     src="//checkout.stripe.com/v2/checkout.js"
                     class="stripe-button"
@@ -147,11 +204,12 @@
                     data-description="Checkout for enrolling in <%= course.name %>"
                     data-locale="auto"
                 ></script>
+                  <button >Enroll</button>
                 </a>
             </form>
             <% } else { %>
-            <a href="/courses/<%= user.id %>/unenroll/<%= course.id %>">
-                <button>Unenroll</button>
+            <a class="bottom-action" href="/courses/<%= user.id %>/unenroll/<%= course.id %>" id="unenroll">
+                <button id="unenroll" >Unenroll</button>
             </a>
             <% } %>
             </div>
