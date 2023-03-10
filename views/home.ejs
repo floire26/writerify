@@ -1,34 +1,111 @@
 <%-include("./_partials/header")-%>
 
-<style>
-  main {
-    height: calc(100vh - 8em);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writerify</title>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+  <style>
+    main {
+      height: calc(100vh - 8em);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .card {
-    background-color: #F9F5E7;
-    padding: 2rem;
+    .card {
+      background-color: #F9F5E7;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 1rem;
+      margin: auto;
+      align-self: flex-start;
+      height: 113%;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    div img{
+      width: 45%;
+    }
+
+    h1 {
+      font-family: Nunito;
+      font-size: 24px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 700;
+      line-height: 26.4px;
+      margin: 2rem;
+    }
+
+  .button-23 {
+    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 10px;
+    outline: none;
+    padding: 13px 23px;
+    margin: 1%;
+    position: relative;
     text-align: center;
-    border-radius: 1rem;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
   }
 
-  h1 {
-    font-size: 36px;
-    margin-top: 2rem;
+  #navButton {
+    font-size: 16px;
+    width: auto;
+    height: 30%;
+    font-weight: 600;
   }
-</style>
 
+
+.button-23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button-23:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+.button-23:disabled {
+  border-color: #DDDDDD;
+  color: #DDDDDD;
+  cursor: not-allowed;
+  opacity: 1;
+}
+  </style>
+</head>
 <body>
   <main>
     <div class="card">
       <img src="/assets/home.svg" />
       <h1>
-        Welcome to Writerify! Writerify that can help you improve your writing
+        Welcome to <strong>Writerify</strong>! <strong>Writerify</strong>  that can help you improve your writing
         skills
       </h1>
+      <a href="/register">
+        <button class="button-23">Register for Free</button>
+      </a>
     </div>
   </main>
 </body>

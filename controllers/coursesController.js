@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const { User, Course, Proficiency, Class } = require('../models');
+const displayCourseLevel = require('../helpers/displayCourseLevel');
 const pubKey = process.env.PUBLISHABLE_KEY;
 const sKey = process.env.SECRET_KEY;
 const stripe = require('stripe')(sKey);
@@ -8,7 +9,7 @@ const stripe = require('stripe')(sKey);
 class coursesController{
     static getCoursesList(req, res) {
         const { UserId, CourseId } = req.params
-        const { prof } = req.query;
+        const { prof, search } = req.query;
         const options = {
             include: Proficiency, User, Class
         };
@@ -20,7 +21,15 @@ class coursesController{
                      [Op.eq]: prof
                 }
             }
+        } else if (search) {
+            options.where = {
+                name: {
+                     [Op.iLike]: `%${search}%`
+                }
+            }
         }
+
+
         Course.findAll(options)
         .then(courses => {
             User.findByPk(UserId, {
@@ -30,8 +39,9 @@ class coursesController{
                 }
             })
             .then(user => {
-                console.log(user.dataValues.Courses);
-                res.render('coursesList', { courses, user, prof: prof, key: pubKey, CourseId })
+                // console.log(user.dataValues.Courses);
+                // console.log(courses);
+                res.render('coursesList', { courses, user, prof: prof, key: pubKey, CourseId, displayCourseLevel })
             })
         })
         .catch(err => res.send(err));

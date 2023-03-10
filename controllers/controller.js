@@ -29,8 +29,13 @@ class Controller {
         req.session.user = {
           id: foundUser.id,
           username: foundUser.username,
-        };
-        res.redirect(`/prompt/${foundUser.id}`);
+        }
+
+        if (!foundUser.ProficiencyId) {
+          res.redirect(`/prompt/${foundUser.id}`);
+        } else {
+          res.redirect(`/courses/${foundUser.id}?prof=${foundUser.ProficiencyId}`);
+        }
       }
     });
   }
