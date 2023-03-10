@@ -125,9 +125,9 @@
             </div>
             <div>
             <div class="card-detail">
-                <p><strong>Duration</strong><br /><%= course.duration %></p>
+                <p><img src="https://cdn-icons-png.flaticon.com/512/3917/3917267.png" style="width: 12px; height: 12px;" /><br /><%= course.duration %></p>
                 <p><strong>Level</strong><br /><%= displayCourseLevel(course.Proficiency.level) %></p>
-                <p><strong>Price</strong><br /><%= course.convertPrice() %></p>
+                <p><img src="https://cdn-icons-png.flaticon.com/512/5893/5893015.png" style="width: 12px; height: 12px;" /><br /><%= course.convertPrice() %></p>
             </div>
             <% if (user.Courses.every(enrolledCourse => enrolledCourse.name !==
             course.name)) { %>
